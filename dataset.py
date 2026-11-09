@@ -23,6 +23,30 @@ POSITIVE_WORDS = [
     "chill",
     "relaxed",
     "amazing",
+    # Added in Part 2: common plain-English positive words
+    "hopeful",
+    "proud",
+    "glad",
+    "best",
+    "nice",
+    "fantastic",
+    "grateful",
+    "enjoy",
+    "enjoyed",
+    # Added in Part 3 (fix: emojis had no effect). Only emojis/emoticons whose
+    # meaning is fairly stable. Deliberately NOT added: 🙂 (often passive-
+    # aggressive), 😭 (crying OR laughing), 💀 ("I'm dead" = laughing).
+    ":)",
+    ":d",
+    "😊",
+    "😀",
+    "😁",
+    "😄",
+    "😍",
+    "🥰",
+    "❤",
+    "🎉",
+    "🔥",
 ]
 
 NEGATIVE_WORDS = [
@@ -36,6 +60,23 @@ NEGATIVE_WORDS = [
     "stressed",
     "hate",
     "boring",
+    # Added in Part 2: common plain-English negative words
+    "miss",
+    "worst",
+    "annoyed",
+    "lonely",
+    "scared",
+    "worried",
+    "ugh",
+    "exhausted",
+    # Added in Part 3 (emoji fix, see note in POSITIVE_WORDS)
+    ":(",
+    "😢",
+    "😞",
+    "😩",
+    "😡",
+    "😠",
+    "💔",
 ]
 
 # ---------------------------------------------------------------------
@@ -50,6 +91,25 @@ SAMPLE_POSTS = [
     "This is fine",
     "So excited for the weekend",
     "I am not happy about this",
+    # --- Added in Part 1: realistic language (slang, emojis, sarcasm, mixed) ---
+    "Lowkey stressed but kind of proud of myself",
+    "I absolutely love getting stuck in traffic for an hour",
+    "this new album is fire 🔥",
+    "I'm fine 🙂",
+    "Got the job!!! 😭😭",
+    "ugh my phone died again 😩",
+    "Not bad at all, actually pretty good",
+    "I miss my friends but college is going great",
+    "Just woke up, gonna grab coffee",
+    "Exam tomorrow and I haven't even started studying 💀",
+    # --- Added in Part 4: more data to see how each model reacts ---
+    "Best birthday ever, thank you all 🎉",
+    "im so mad rn my roommate ate my leftovers",
+    "the tacos here are bussin no cap",
+    "Traffic was awful but the beach was worth it",
+    "Package arrives Tuesday",
+    "I'm so happy for you!!",
+    "Honestly kinda lonely this weekend",
 ]
 
 # Human labels for each post above.
@@ -65,7 +125,31 @@ TRUE_LABELS = [
     "neutral",   # "This is fine"
     "positive",  # "So excited for the weekend"
     "negative",  # "I am not happy about this"
+    # --- Added in Part 1 ---
+    "mixed",     # "Lowkey stressed but kind of proud of myself"
+    "negative",  # "I absolutely love getting stuck in traffic for an hour" (sarcasm)
+    "positive",  # "this new album is fire 🔥" (slang)
+    "neutral",   # "I'm fine 🙂" (debatable: could read as passive-aggressive/negative)
+    "positive",  # "Got the job!!! 😭😭" (tears of joy, not sadness)
+    "negative",  # "ugh my phone died again 😩"
+    "positive",  # "Not bad at all, actually pretty good" (negated negative)
+    "mixed",     # "I miss my friends but college is going great"
+    "neutral",   # "Just woke up, gonna grab coffee"
+    "negative",  # "Exam tomorrow and I haven't even started studying 💀"
+    # --- Added in Part 4 ---
+    "positive",  # "Best birthday ever, thank you all 🎉"
+    "negative",  # "im so mad rn my roommate ate my leftovers"
+    "positive",  # "the tacos here are bussin no cap"
+    "mixed",     # "Traffic was awful but the beach was worth it"
+    "neutral",   # "Package arrives Tuesday"
+    "positive",  # "I'm so happy for you!!"
+    "negative",  # "Honestly kinda lonely this weekend"
 ]
+
+# Sanity check: every post needs exactly one label.
+assert len(SAMPLE_POSTS) == len(TRUE_LABELS), (
+    f"SAMPLE_POSTS has {len(SAMPLE_POSTS)} items but TRUE_LABELS has {len(TRUE_LABELS)}"
+)
 
 # TODO: Add 5-10 more posts and labels.
 #
